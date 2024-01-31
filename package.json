@@ -1,10 +1,10 @@
 {
   "version": "1.13.1-0",
-  "name": "@kmamal/build-evdev",
-  "description": "build-evdev",
+  "name": "@kmamal/build-libevdev",
+  "description": "build-libevdev",
   "repository": {
     "type": "git",
-    "url": "git@github.com:kmamal/build-evdev.git"
+    "url": "git@github.com:kmamal/build-libevdev.git"
   },
   "main": "index.js",
   "scripts": {

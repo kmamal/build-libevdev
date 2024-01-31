@@ -1,5 +1,4 @@
 .github
 libevdev
-build
 dist
 publish

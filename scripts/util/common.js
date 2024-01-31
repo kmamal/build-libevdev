@@ -19,6 +19,7 @@ const assetName = `libevdev-v${version}-${platform}-${targetArch}.tar.gz`
 module.exports = {
 	dir,
 	version,
+	isPrerelease: false, // TODO
 	owner,
 	repo,
 	platform,
