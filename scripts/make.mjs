@@ -11,12 +11,17 @@ await Fs.promises.rm(C.dir.dist, { recursive: true }).catch(() => {})
 await Fs.promises.mkdir(C.dir.dist, { recursive: true })
 
 await Promise.all([
+	Fs.promises.mkdir(Path.join(C.dir.dist, 'include')),
+	Fs.promises.mkdir(Path.join(C.dir.dist, 'lib')),
+])
+
+await Promise.all([
 	Fs.promises.cp(
 		Path.join(C.dir.libevdev, 'libevdev/libevdev.h'),
-		Path.join(C.dir.dist, 'libevdev.h'),
+		Path.join(C.dir.dist, 'include/libevdev.h'),
 	),
 	Fs.promises.cp(
 		Path.join(C.dir.libevdev, 'libevdev/.libs/libevdev.a'),
-		Path.join(C.dir.dist, 'libevdev.a'),
+		Path.join(C.dir.dist, 'lib/libevdev.a'),
 	),
 ])
