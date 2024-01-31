@@ -1,0 +1,29 @@
+name: Build and upload
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: ${{ matrix.platform.name }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - { name: 'Linux (x64)', os: ubuntu-22.04 }
+
+    runs-on: ${{ matrix.platform.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: sudo apt-get update && ./scripts/install-deps-ubuntu.sh
+
+      - if: ${{ startsWith(matrix.platform.os, 'macos-') }}
+        run: ./scripts/install-deps-mac.sh
+
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROSS_COMPILE_ARCH: ${{ matrix.platform.arch }}
+          BUILD_SDL_PARALLEL: 1
+        run: npm run release

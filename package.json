@@ -1,22 +1,25 @@
 {
-  "version": "0.0.0",
+  "version": "1.13.1-0",
   "name": "@kmamal/build-evdev",
   "description": "build-evdev",
   "repository": {
     "type": "git",
     "url": "git@github.com:kmamal/build-evdev.git"
   },
-  "license": "MIT",
-  "main": "./src/index.js",
-  "exports": "./src/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "npx @kmamal/testing",
-    "update-exports": "node ./scripts/update-exports.mjs"
+    "install": "cd scripts && node install.mjs",
+    "download-release": "cd scripts && node download-release.mjs",
+    "build": "cd scripts && node build.mjs",
+    "download-libevdev": "cd scripts && node download-libevdev.mjs",
+    "configure": "cd scripts && node configure.mjs",
+    "make": "cd scripts && node make.mjs",
+    "upload-release": "cd scripts && node upload-release.mjs",
+    "release": "cd scripts && node release.mjs",
+    "clean": "cd scripts && node clean.mjs"
   },
+  "license": "MIT",
   "dependencies": {
-    "@kmamal/util": "^0.1.14"
-  },
-  "devDependencies": {
-    "@kmamal/testing": "^0.0.28"
+    "tar": "^6.1.11"
   }
 }
