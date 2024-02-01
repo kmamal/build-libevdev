@@ -23,7 +23,7 @@ await Promise.all([
 		Path.join(C.dir.dist, 'include/libevdev/libevdev-uinput.h'),
 	),
 	Fs.promises.cp(
-		Path.join(C.dir.libevdev, 'libevdev/.libs/libevdev.a'),
-		Path.join(C.dir.dist, 'lib/libevdev.a'),
+		Path.join(C.dir.libevdev, 'libevdev/.libs/libevdev.so'),
+		Path.join(C.dir.dist, 'lib/libevdev.so'),
 	),
 ])
