@@ -25,5 +25,16 @@ await Promise.all([
 	Fs.promises.cp(
 		Path.join(C.dir.libevdev, 'libevdev/.libs/libevdev.so'),
 		Path.join(C.dir.dist, 'lib/libevdev.so'),
+		{ verbatimSymlinks: true },
+	),
+	Fs.promises.cp(
+		Path.join(C.dir.libevdev, 'libevdev/.libs/libevdev.so.2'),
+		Path.join(C.dir.dist, 'lib/libevdev.so.2'),
+		{ verbatimSymlinks: true },
+	),
+	Fs.promises.cp(
+		Path.join(C.dir.libevdev, 'libevdev/.libs/libevdev.so.2.3.0'),
+		Path.join(C.dir.dist, 'lib/libevdev.so.2.3.0'),
+		{ verbatimSymlinks: true },
 	),
 ])
