@@ -2,7 +2,7 @@
 if (!process.env.BUILD_LIBEVDEV_FROM_SOURCE) {
 	try {
 		await import('./download-release.mjs')
-		process.exit()
+		process.exit(0)
 	} catch (error) {
 		console.log("failed to download release")
 	}

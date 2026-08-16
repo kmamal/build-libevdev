@@ -2,7 +2,7 @@ import Fs from 'node:fs'
 import { once } from 'node:events'
 import C from './util/common.js'
 import { fetch } from './util/fetch.js'
-import Tar from 'tar'
+import * as Tar from 'tar'
 
 const url = `https://gitlab.freedesktop.org/libevdev/libevdev/-/archive/libevdev-${C.version}/libevdev-libevdev-${C.version}.tar.gz`
 
