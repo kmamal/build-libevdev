@@ -1,6 +1,5 @@
 
 apt-get install -y \
 	build-essential \
-	autoconf \
-	automake \
-	libtool
+	pkg-config \
+	xz-utils
