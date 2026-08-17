@@ -1,3 +1,6 @@
 
 apt-get install -y \
-	build-essential
+	build-essential \
+	autoconf \
+	automake \
+	libtool

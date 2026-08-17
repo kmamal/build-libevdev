@@ -1,17 +1,10 @@
 import Fs from 'node:fs'
-import { once } from 'node:events'
+import { execSync } from 'node:child_process'
 import C from './util/common.js'
-import { fetch } from './util/fetch.js'
-import * as Tar from 'tar'
 
-const url = `https://gitlab.freedesktop.org/libevdev/libevdev/-/archive/libevdev-${C.version}/libevdev-libevdev-${C.version}.tar.gz`
+const url = 'https://gitlab.freedesktop.org/libevdev/libevdev.git'
+const tag = `libevdev-${C.version}`
 
-console.log("fetch", url)
-const response = await fetch(url)
-
-console.log("unpack to", C.dir.libevdev)
+console.log("clone", url, "at", tag)
 await Fs.promises.rm(C.dir.libevdev, { recursive: true }).catch(() => {})
-await Fs.promises.mkdir(C.dir.libevdev, { recursive: true })
-const tar = Tar.extract({ gzip: true, strip: 1, C: C.dir.libevdev })
-response.stream().pipe(tar)
-await once(tar, 'finish')
+execSync(`git clone --depth 1 --branch ${tag} ${url} ${C.dir.libevdev}`, { stdio: 'inherit' })
