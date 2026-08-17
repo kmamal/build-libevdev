@@ -13,7 +13,15 @@ await Promise.all([
 	Fs.promises.mkdir(Path.join(C.dir.dist, 'lib'), { recursive: true }),
 ])
 
+const libsDir = Path.join(C.dir.libevdev, 'libevdev/.libs')
+const libNames = (await Fs.promises.readdir(libsDir))
+	.filter((name) => name.startsWith('libevdev.so'))
+
 await Promise.all([
+	Fs.promises.cp(
+		Path.join(C.dir.libevdev, 'COPYING'),
+		Path.join(C.dir.dist, 'COPYING'),
+	),
 	Fs.promises.cp(
 		Path.join(C.dir.libevdev, 'libevdev/libevdev.h'),
 		Path.join(C.dir.dist, 'include/libevdev/libevdev.h'),
@@ -22,19 +30,9 @@ await Promise.all([
 		Path.join(C.dir.libevdev, 'libevdev/libevdev-uinput.h'),
 		Path.join(C.dir.dist, 'include/libevdev/libevdev-uinput.h'),
 	),
-	Fs.promises.cp(
-		Path.join(C.dir.libevdev, 'libevdev/.libs/libevdev.so'),
-		Path.join(C.dir.dist, 'lib/libevdev.so'),
+	...libNames.map((name) => Fs.promises.cp(
+		Path.join(libsDir, name),
+		Path.join(C.dir.dist, 'lib', name),
 		{ verbatimSymlinks: true },
-	),
-	Fs.promises.cp(
-		Path.join(C.dir.libevdev, 'libevdev/.libs/libevdev.so.2'),
-		Path.join(C.dir.dist, 'lib/libevdev.so.2'),
-		{ verbatimSymlinks: true },
-	),
-	Fs.promises.cp(
-		Path.join(C.dir.libevdev, 'libevdev/.libs/libevdev.so.2.3.0'),
-		Path.join(C.dir.dist, 'lib/libevdev.so.2.3.0'),
-		{ verbatimSymlinks: true },
-	),
+	)),
 ])
