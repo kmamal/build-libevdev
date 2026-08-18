@@ -19,7 +19,7 @@ const xz = Child.spawn('xz', [ '-dc' ], { stdio: [ 'pipe', 'pipe', 'inherit' ] }
 const exited = once(xz, 'exit')
 await Promise.all([
 	Stream.promises.pipeline(Stream.Readable.fromWeb(response.body), xz.stdin),
-	Stream.promises.pipeline(xz.stdout, Tar.extract({ strip: 1, C: C.dir.libevdev })),
+	Stream.promises.pipeline(xz.stdout, Tar.extract({ preservePaths: true, strip: 1, C: C.dir.libevdev })),
 ])
 const [ code ] = await exited
 if (code !== 0) { throw new Error(`xz failed with code ${code}`) }
