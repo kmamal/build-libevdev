@@ -18,8 +18,8 @@
     "release": "cd scripts && node release.mjs",
     "clean": "cd scripts && node clean.mjs"
   },
+  "main": "index.js",
   "dependencies": {
-    "tar": "7.5.22"
-  },
-  "main": "index.js"
+    "modern-tar": "0.8.4"
+  }
 }
